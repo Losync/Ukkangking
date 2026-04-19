@@ -14,14 +14,8 @@
     <div class="min-h-screen flex">
         {{-- Sidebar --}}
         <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-primary-dark text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 lg:static lg:inset-auto lg:transform-none">
-            <div class="flex items-center gap-3 px-6 py-5 border-b border-primary-light/30">
-                <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
-                    <span class="text-primary-dark font-bold text-lg">S</span>
-                </div>
-                <div>
-                    <h1 class="font-bold text-lg leading-tight">Sofia Snack</h1>
-                    <span class="text-xs text-secondary-light">Admin Panel</span>
-                </div>
+            <div class="flex items-center justify-center px-6 py-5 border-b border-primary-light/30">
+                <img src="{{ asset('img/logosofia.svg') }}" alt="Sofia Snack" class="h-10">
             </div>
 
             <nav class="px-4 py-6 space-y-1">

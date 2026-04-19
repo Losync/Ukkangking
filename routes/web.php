@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -36,6 +37,12 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+// Order History (authenticated users)
+Route::middleware('auth')->group(function () {
+    Route::get('/orders', [OrderHistoryController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderHistoryController::class, 'show'])->name('orders.show');
+});
 
 // Admin Dashboard
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {

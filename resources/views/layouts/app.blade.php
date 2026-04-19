@@ -20,11 +20,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 {{-- Logo --}}
-                <a href="{{ route('home') }}" class="flex items-center gap-2">
-                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">S</span>
-                    </div>
-                    <span class="text-xl font-bold text-primary">Sofia Snack</span>
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('img/logosofia.svg') }}" alt="Sofia Snack" class="h-10">
                 </a>
 
                 {{-- Desktop Menu --}}
@@ -40,6 +37,7 @@
                         @endif
                     </a>
                     @auth
+                        <a href="{{ route('orders.index') }}" class="text-brown-text hover:text-primary font-medium transition-colors text-sm {{ request()->routeIs('orders.*') ? 'text-primary' : '' }}">Pesanan Saya</a>
                         @if(auth()->user()->is_admin)
                             <a href="{{ route('admin.dashboard') }}" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors font-medium text-sm">Dashboard</a>
                         @endif
@@ -71,6 +69,7 @@
                         @endif
                     </a>
                     @auth
+                        <a href="{{ route('orders.index') }}" class="text-brown-text hover:text-primary font-medium">Pesanan Saya</a>
                         @if(auth()->user()->is_admin)
                             <a href="{{ route('admin.dashboard') }}" class="text-primary font-medium">Dashboard</a>
                         @endif
@@ -115,11 +114,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
-                            <span class="text-primary-dark font-bold text-lg">S</span>
-                        </div>
-                        <span class="text-xl font-bold">Sofia Snack</span>
+                    <div class="mb-4">
+                        <img src="{{ asset('img/logosofia.svg') }}" alt="Sofia Snack" class="h-12">
                     </div>
                     <p class="text-secondary-light text-sm leading-relaxed">Menyajikan berbagai kue dan snack berkualitas dengan cita rasa terbaik untuk setiap momen spesial Anda.</p>
                 </div>

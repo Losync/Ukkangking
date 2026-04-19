@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Sofia Snack E-Commerce</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #6B4226;
+            --primary-dark: #4A2E1A;
+            --secondary: #D4A574;
+            --cream: #FFF9F0;
+            --text: #3D2B1F;
+            --muted: #8B7355;
+            --border: #E8D5C0;
+            --code-bg: #2d2d2d;
+        }
+
+        @media print {
+            body { font-size: 11pt; }
+            .page-break { page-break-before: always; }
+            .no-print { display: none; }
+            .cover { min-height: auto; padding: 60px 0; }
+            section { page-break-inside: avoid; }
+            pre { font-size: 9pt; }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: white;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Cover Page */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 0;
+            border-bottom: 4px solid var(--primary);
+        }
+        .cover-badge {
+            background: var(--cream);
+            border: 2px solid var(--border);
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 24px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .cover h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .cover h2 {
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
+        .cover-info {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px 50px;
+            text-align: left;
+            max-width: 400px;
+        }
+        .cover-info p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        .cover-info p strong {
+            color: var(--text);
+            display: inline-block;
+            width: 120px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            padding: 40px 0;
+        }
+        .toc h2 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+        .toc > ol > li {
+            counter-increment: toc-counter;
+            margin-bottom: 6px;
+        }
+        .toc > ol > li > a {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .toc > ol > li > a:hover { background: var(--cream); }
+        .toc > ol > li > a::before {
+            content: counter(toc-counter) ".";
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: 12px;
+            font-size: 16px;
+            min-width: 28px;
+        }
+
+        /* Sections */
+        section {
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section:last-child { border-bottom: none; }
+
+        h2.section-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+        }
+        .section-desc {
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 24px 0 12px;
+        }
+        h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 16px 0 8px;
+        }
+
+        p { margin-bottom: 12px; font-size: 14px; }
+
+        /* Code */
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--primary);
+        }
+        pre {
+            background: var(--code-bg);
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 12px 0 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: inherit;
+            font-size: inherit;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 20px;
+            font-size: 13px;
+        }
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        th:first-child { border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:nth-child(even) { background: var(--cream); }
+        tr:hover { background: #fdf0e0; }
+
+        /* Alerts */
+        .alert {
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 12px 0 20px;
+            font-size: 13px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .alert-info {
+            background: #EBF5FF;
+            border-left: 4px solid #3B82F6;
+            color: #1E40AF;
+        }
+        .alert-warning {
+            background: #FFF7ED;
+            border-left: 4px solid #F59E0B;
+            color: #92400E;
+        }
+        .alert-success {
+            background: #F0FDF4;
+            border-left: 4px solid #22C55E;
+            color: #166534;
+        }
+        .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+        /* Lists */
+        ul, ol {
+            margin: 8px 0 16px 20px;
+            font-size: 14px;
+        }
+        li { margin-bottom: 6px; }
+
+        /* File tree */
+        .file-tree {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 12px 0 20px;
+        }
+        .file-tree .folder { color: var(--primary); font-weight: 600; }
+        .file-tree .file { color: var(--muted); }
+        .file-tree .comment { color: #999; font-style: italic; }
+
+        /* Steps */
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .step-num {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .step-content { flex: 1; }
+        .step-content h4 { margin-top: 4px; }
+
+        /* Print button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(107, 66, 38, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        .print-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(107, 66, 38, 0.4);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .flow-diagram {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 12px 0 20px;
+            text-align: center;
+        }
+        .flow-diagram .flow-item {
+            display: inline-block;
+            background: white;
+            border: 2px solid var(--secondary);
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            margin: 4px;
+        }
+        .flow-diagram .flow-arrow {
+            display: inline-block;
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 4px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Print Button -->
+    <button class="print-btn no-print" onclick="window.print()">📄 Simpan sebagai PDF</button>
+
+    <!-- ==================== COVER ==================== -->
+    <div class="cover">
+        <div class="cover-badge">📘 Dokumentasi Teknis</div>
+        <h1>Sofia Snack</h1>
+        <h2>Website E-Commerce Toko Kue</h2>
+        <div class="cover-info">
+            <p><strong>Framework</strong> Laravel 13</p>
+            <p><strong>Styling</strong> Tailwind CSS v4</p>
+            <p><strong>Database</strong> MySQL</p>
+            <p><strong>Jenis</strong> Uji Kompetensi Keahlian (UKK)</p>
+            <p><strong>Versi</strong> 1.0</p>
+            <p><strong>Tanggal</strong> April 2026</p>
+        </div>
+    </div>
+
+    <!-- ==================== DAFTAR ISI ==================== -->
+    <div class="toc page-break">
+        <h2>Daftar Isi</h2>
+        <ol>
+            <li><a href="#bab1">Pendahuluan</a></li>
+            <li><a href="#bab2">Persyaratan Sistem</a></li>
+            <li><a href="#bab3">Cara Instalasi & Menjalankan</a></li>
+            <li><a href="#bab4">Struktur Folder Proyek</a></li>
+            <li><a href="#bab5">Database & Migrasi</a></li>
+            <li><a href="#bab6">Autentikasi (Login & Register)</a></li>
+            <li><a href="#bab7">Fitur Website Utama (Public)</a></li>
+            <li><a href="#bab8">Fitur Keranjang Belanja</a></li>
+            <li><a href="#bab9">Fitur Checkout & Pengurangan Stok</a></li>
+            <li><a href="#bab10">Fitur Riwayat Pesanan (User)</a></li>
+            <li><a href="#bab11">Dashboard Admin</a></li>
+            <li><a href="#bab12">CRUD Kategori (Admin)</a></li>
+            <li><a href="#bab13">CRUD Produk (Admin)</a></li>
+            <li><a href="#bab14">Manajemen Pesanan (Admin)</a></li>
+            <li><a href="#bab15">Routes (Rute URL)</a></li>
+            <li><a href="#bab16">Akun Default & Seeder</a></li>
+        </ol>
+    </div>
+
+    <!-- ==================== BAB 1 ==================== -->
+    <section id="bab1" class="page-break">
+        <h2 class="section-title">1. Pendahuluan</h2>
+        <p class="section-desc">Gambaran umum tentang website Sofia Snack.</p>
+
+        <p><strong>Sofia Snack</strong> adalah website e-commerce sederhana bertema toko kue yang dibangun sebagai proyek Uji Kompetensi Keahlian (UKK) SMK. Website ini memungkinkan pelanggan untuk menelusuri produk kue, menambahkan ke keranjang, dan melakukan pemesanan. Di sisi lain, admin dapat mengelola kategori, produk, dan pesanan melalui dashboard admin yang terpisah.</p>
+
+        <h3>Fitur Utama</h3>
+        <table>
+            <tr><th>Fitur</th><th>Deskripsi</th></tr>
+            <tr><td>Landing Page</td><td>Halaman beranda dengan hero section, kategori, dan produk terbaru</td></tr>
+            <tr><td>Katalog Produk</td><td>Halaman daftar produk dengan filter kategori dan pencarian</td></tr>
+            <tr><td>Keranjang Belanja</td><td>Menambah, mengubah jumlah, dan menghapus produk dari keranjang (session-based)</td></tr>
+            <tr><td>Checkout</td><td>Formulir pemesanan dengan otomatis pengurangan stok</td></tr>
+            <tr><td>Riwayat Pesanan</td><td>User yang login bisa melihat history dan status pesanan mereka</td></tr>
+            <tr><td>Login & Register</td><td>Sistem autentikasi untuk user dan admin</td></tr>
+            <tr><td>Dashboard Admin</td><td>Statistik toko, CRUD kategori, CRUD produk, dan manajemen pesanan</td></tr>
+        </table>
+
+        <h3>Teknologi yang Digunakan</h3>
+        <table>
+            <tr><th>Komponen</th><th>Teknologi</th><th>Versi</th></tr>
+            <tr><td>Backend Framework</td><td>Laravel</td><td>13.x</td></tr>
+            <tr><td>Frontend Styling</td><td>Tailwind CSS</td><td>4.x</td></tr>
+            <tr><td>Database</td><td>MySQL</td><td>8.x</td></tr>
+            <tr><td>Build Tool</td><td>Vite</td><td>6.x</td></tr>
+            <tr><td>Package Manager</td><td>Bun / NPM</td><td>-</td></tr>
+            <tr><td>Bahasa</td><td>PHP</td><td>8.3+</td></tr>
+        </table>
+    </section>
+
+    <!-- ==================== BAB 2 ==================== -->
+    <section id="bab2">
+        <h2 class="section-title">2. Persyaratan Sistem</h2>
+        <p class="section-desc">Apa saja yang perlu diinstal sebelum menjalankan proyek.</p>
+
+        <p>Pastikan komputer Anda sudah terinstal software berikut:</p>
+        <table>
+            <tr><th>Software</th><th>Minimum Versi</th><th>Keterangan</th></tr>
+            <tr><td>PHP</td><td>8.2</td><td>Bahasa pemrograman utama Laravel</td></tr>
+            <tr><td>Composer</td><td>2.x</td><td>Package manager PHP untuk mengelola library</td></tr>
+            <tr><td>MySQL</td><td>8.0</td><td>Database server (bisa juga XAMPP/Laragon)</td></tr>
+            <tr><td>Node.js</td><td>18.x</td><td>Untuk menjalankan Vite (build CSS/JS)</td></tr>
+            <tr><td>NPM / Bun</td><td>-</td><td>Package manager JavaScript</td></tr>
+        </table>
+
+        <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Tips:</strong> Jika Anda menggunakan <strong>Laragon</strong> atau <strong>XAMPP</strong>, PHP dan MySQL sudah terinstal otomatis. Anda hanya perlu menambahkan Composer dan Node.js.</div>
+        </div>
+    </section>
+
+    <!-- ==================== BAB 3 ==================== -->
+    <section id="bab3" class="page-break">
+        <h2 class="section-title">3. Cara Instalasi & Menjalankan</h2>
+        <p class="section-desc">Langkah-langkah dari awal hingga website dapat diakses.</p>
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h4>Clone atau Copy Proyek</h4>
+                <p>Salin folder proyek ke direktori kerja Anda.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h4>Install Dependency PHP</h4>
+                <p>Buka terminal di folder proyek, lalu jalankan:</p>
+                <pre><code>composer install</code></pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h4>Install Dependency JavaScript</h4>
+                <pre><code>npm install
+# atau jika menggunakan Bun:
+bun install</code></pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h4>Konfigurasi File .env</h4>
+                <p>Salin file <code>.env.example</code> menjadi <code>.env</code>, lalu edit bagian database:</p>
+                <pre><code>cp .env.example .env</code></pre>
+                <p>Buka file <code>.env</code> dan sesuaikan:</p>
+                <pre><code>APP_NAME="Sofia Snack"
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ukkangking
+DB_USERNAME=root
+DB_PASSWORD=</code></pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+                <h4>Generate Application Key</h4>
+                <pre><code>php artisan key:generate</code></pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-content">
+                <h4>Buat Database</h4>
+                <p>Buat database kosong bernama <code>ukkangking</code> di MySQL (bisa lewat phpMyAdmin atau terminal).</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">7</div>
+            <div class="step-content">
+                <h4>Jalankan Migrasi & Seeder</h4>
+                <p>Ini akan membuat semua tabel dan mengisi data awal (admin, kategori, produk):</p>
+                <pre><code>php artisan migrate --seed</code></pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">8</div>
+            <div class="step-content">
+                <h4>Buat Storage Link</h4>
+                <p>Agar gambar yang diupload bisa ditampilkan:</p>
+                <pre><code>php artisan storage:link</code></pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">9</div>
+            <div class="step-content">
+                <h4>Jalankan Server</h4>
+                <p>Buka <strong>2 terminal</strong> terpisah:</p>
+                <pre><code># Terminal 1 - Laravel Server
+php artisan serve
+
+# Terminal 2 - Vite (Tailwind CSS)
+npm run dev</code></pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">10</div>
+            <div class="step-content">
+                <h4>Akses Website</h4>
+                <p>Buka browser dan kunjungi:</p>
+                <pre><code>http://localhost:8000</code></pre>
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Penting:</strong> Kedua terminal (Laravel server & Vite) harus tetap berjalan selama development. Jika Vite tidak jalan, tampilan CSS tidak akan muncul.</div>
+        </div>
+    </section>
+
+    <!-- ==================== BAB 4 ==================== -->
+    <section id="bab4" class="page-break">
+        <h2 class="section-title">4. Struktur Folder Proyek</h2>
+        <p class="section-desc">Penjelasan folder-folder penting dalam proyek ini.</p>
+
+        <div class="file-tree">
+            <span class="folder">📁 ukkangking/</span><br>
+            ├── <span class="folder">📁 app/</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 Http/Controllers/</span> <span class="comment"># Semua controller (logika aplikasi)</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp; ├── <span class="file">AuthController.php</span> <span class="comment"># Login, Register, Logout</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp; ├── <span class="file">HomeController.php</span> <span class="comment"># Halaman beranda</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp; ├── <span class="file">ProductController.php</span> <span class="comment"># Daftar & detail produk</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp; ├── <span class="file">CartController.php</span> <span class="comment"># Keranjang belanja</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp; ├── <span class="file">CheckoutController.php</span> <span class="comment"># Proses checkout</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp; ├── <span class="file">OrderHistoryController.php</span> <span class="comment"># Riwayat pesanan user</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp; └── <span class="folder">📁 Admin/</span> <span class="comment"># Controller khusus admin</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── <span class="file">DashboardController.php</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── <span class="file">CategoryController.php</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── <span class="file">ProductController.php</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── <span class="file">OrderController.php</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 Http/Middleware/</span><br>
+            │&nbsp;&nbsp; │&nbsp;&nbsp; └── <span class="file">AdminMiddleware.php</span> <span class="comment"># Proteksi akses admin</span><br>
+            │&nbsp;&nbsp; └── <span class="folder">📁 Models/</span> <span class="comment"># Model Eloquent (representasi tabel)</span><br>
+            │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── <span class="file">User.php</span><br>
+            │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── <span class="file">Category.php</span><br>
+            │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── <span class="file">Product.php</span><br>
+            │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── <span class="file">Order.php</span><br>
+            │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── <span class="file">OrderItem.php</span><br>
+            ├── <span class="folder">📁 database/</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 migrations/</span> <span class="comment"># File pembuatan tabel database</span><br>
+            │&nbsp;&nbsp; └── <span class="folder">📁 seeders/</span> <span class="comment"># Data awal (admin, kategori, produk)</span><br>
+            ├── <span class="folder">📁 resources/views/</span> <span class="comment"># Semua file tampilan (Blade)</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 layouts/</span> <span class="comment"># Template layout utama</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 auth/</span> <span class="comment"># Login & register</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 products/</span> <span class="comment"># Halaman produk</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 cart/</span> <span class="comment"># Keranjang belanja</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 checkout/</span> <span class="comment"># Checkout & sukses</span><br>
+            │&nbsp;&nbsp; ├── <span class="folder">📁 orders/</span> <span class="comment"># Riwayat pesanan user</span><br>
+            │&nbsp;&nbsp; └── <span class="folder">📁 admin/</span> <span class="comment"># Semua halaman admin</span><br>
+            ├── <span class="folder">📁 routes/</span><br>
+            │&nbsp;&nbsp; └── <span class="file">web.php</span> <span class="comment"># Semua definisi URL</span><br>
+            ├── <span class="folder">📁 public/img/</span><br>
+            │&nbsp;&nbsp; └── <span class="file">logosofia.svg</span> <span class="comment"># Logo toko</span><br>
+            └── <span class="file">.env</span> <span class="comment"># Konfigurasi environment</span>
+        </div>
+    </section>
+
+    <!-- ==================== BAB 5 ==================== -->
+    <section id="bab5" class="page-break">
+        <h2 class="section-title">5. Database & Migrasi</h2>
+        <p class="section-desc">Penjelasan tabel-tabel yang digunakan dalam database.</p>
+
+        <h3>Diagram Relasi Tabel</h3>
+        <div class="flow-diagram">
+            <span class="flow-item">👤 users</span>
+            <span class="flow-arrow">1 → N</span>
+            <span class="flow-item">📋 orders</span>
+            <span class="flow-arrow">1 → N</span>
+            <span class="flow-item">📦 order_items</span>
+            <span class="flow-arrow">N ← 1</span>
+            <span class="flow-item">🍰 products</span>
+            <span class="flow-arrow">N ← 1</span>
+            <span class="flow-item">🏷️ categories</span>
+        </div>
+
+        <h3>Tabel <code>users</code></h3>
+        <p>Menyimpan data pengguna (customer & admin).</p>
+        <table>
+            <tr><th>Kolom</th><th>Tipe</th><th>Keterangan</th></tr>
+            <tr><td>id</td><td>bigint (PK)</td><td>Primary key, auto-increment</td></tr>
+            <tr><td>name</td><td>string</td><td>Nama lengkap</td></tr>
+            <tr><td>email</td><td>string (unique)</td><td>Email untuk login</td></tr>
+            <tr><td>password</td><td>string</td><td>Password terenkripsi (bcrypt)</td></tr>
+            <tr><td>is_admin</td><td>boolean</td><td>true = admin, false = customer biasa</td></tr>
+        </table>
+
+        <h3>Tabel <code>categories</code></h3>
+        <p>Menyimpan kategori produk kue.</p>
+        <table>
+            <tr><th>Kolom</th><th>Tipe</th><th>Keterangan</th></tr>
+            <tr><td>id</td><td>bigint (PK)</td><td>Primary key</td></tr>
+            <tr><td>name</td><td>string</td><td>Nama kategori (contoh: "Kue Basah")</td></tr>
+            <tr><td>slug</td><td>string (unique)</td><td>URL-friendly name (contoh: "kue-basah")</td></tr>
+            <tr><td>image</td><td>string (nullable)</td><td>Path gambar kategori</td></tr>
+        </table>
+
+        <h3>Tabel <code>products</code></h3>
+        <p>Menyimpan data produk kue.</p>
+        <table>
+            <tr><th>Kolom</th><th>Tipe</th><th>Keterangan</th></tr>
+            <tr><td>id</td><td>bigint (PK)</td><td>Primary key</td></tr>
+            <tr><td>category_id</td><td>bigint (FK)</td><td>Relasi ke tabel categories</td></tr>
+            <tr><td>name</td><td>string</td><td>Nama produk</td></tr>
+            <tr><td>slug</td><td>string (unique)</td><td>URL-friendly name</td></tr>
+            <tr><td>description</td><td>text (nullable)</td><td>Deskripsi produk</td></tr>
+            <tr><td>price</td><td>decimal</td><td>Harga dalam Rupiah</td></tr>
+            <tr><td>stock</td><td>integer</td><td>Jumlah stok tersedia</td></tr>
+            <tr><td>image</td><td>string (nullable)</td><td>Path gambar produk</td></tr>
+            <tr><td>is_active</td><td>boolean</td><td>Status aktif/nonaktif</td></tr>
+        </table>
+
+        <h3>Tabel <code>orders</code></h3>
+        <p>Menyimpan data pesanan pelanggan.</p>
+        <table>
+            <tr><th>Kolom</th><th>Tipe</th><th>Keterangan</th></tr>
+            <tr><td>id</td><td>bigint (PK)</td><td>Primary key</td></tr>
+            <tr><td>user_id</td><td>bigint (FK, nullable)</td><td>User yang memesan (null jika guest)</td></tr>
+            <tr><td>customer_name</td><td>string</td><td>Nama pemesan</td></tr>
+            <tr><td>customer_phone</td><td>string</td><td>Nomor telepon</td></tr>
+            <tr><td>customer_address</td><td>text</td><td>Alamat pengiriman</td></tr>
+            <tr><td>total_price</td><td>decimal</td><td>Total harga keseluruhan</td></tr>
+            <tr><td>status</td><td>enum</td><td>pending / processing / completed / cancelled</td></tr>
+            <tr><td>notes</td><td>text (nullable)</td><td>Catatan tambahan</td></tr>
+        </table>
+
+        <h3>Tabel <code>order_items</code></h3>
+        <p>Menyimpan detail item dalam setiap pesanan.</p>
+        <table>
+            <tr><th>Kolom</th><th>Tipe</th><th>Keterangan</th></tr>
+            <tr><td>id</td><td>bigint (PK)</td><td>Primary key</td></tr>
+            <tr><td>order_id</td><td>bigint (FK)</td><td>Relasi ke tabel orders</td></tr>
+            <tr><td>product_id</td><td>bigint (FK)</td><td>Relasi ke tabel products</td></tr>
+            <tr><td>product_name</td><td>string</td><td>Nama produk saat dipesan (snapshot)</td></tr>
+            <tr><td>price</td><td>decimal</td><td>Harga satuan saat dipesan</td></tr>
+            <tr><td>quantity</td><td>integer</td><td>Jumlah yang dipesan</td></tr>
+            <tr><td>subtotal</td><td>decimal</td><td>price × quantity</td></tr>
+        </table>
+    </section>
+
+    <!-- ==================== BAB 6 ==================== -->
+    <section id="bab6" class="page-break">
+        <h2 class="section-title">6. Autentikasi (Login & Register)</h2>
+        <p class="section-desc">Sistem login dan registrasi user.</p>
+
+        <h3>Cara Kerja</h3>
+        <p>Autentikasi menggunakan implementasi <strong>manual</strong> (tanpa package Breeze/Jetstream) melalui <code>AuthController</code>.</p>
+
+        <div class="flow-diagram">
+            <span class="flow-item">User buka /login</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Isi email & password</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">AuthController validasi</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">✅ Redirect ke home</span>
+        </div>
+
+        <h3>File Terkait</h3>
+        <table>
+            <tr><th>File</th><th>Fungsi</th></tr>
+            <tr><td><code>AuthController.php</code></td><td>Handle login, register, logout</td></tr>
+            <tr><td><code>AdminMiddleware.php</code></td><td>Cek apakah user adalah admin</td></tr>
+            <tr><td><code>views/auth/login.blade.php</code></td><td>Tampilan halaman login</td></tr>
+            <tr><td><code>views/auth/register.blade.php</code></td><td>Tampilan halaman registrasi</td></tr>
+        </table>
+
+        <h3>Alur Login (AuthController)</h3>
+        <pre><code>public function login(Request $request)
+{
+    // 1. Validasi input
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    // 2. Coba login dengan Auth::attempt
+    if (Auth::attempt($request->only('email', 'password'), $request->remember)) {
+        $request->session()->regenerate();
+
+        // 3. Jika admin, redirect ke dashboard admin
+        if (auth()->user()->is_admin) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        // 4. Jika user biasa, redirect ke home
+        return redirect()->route('home');
+    }
+
+    // 5. Jika gagal, kembali ke form login
+    return back()->withErrors(['email' => 'Email atau password salah.']);
+}</code></pre>
+
+        <h3>Proteksi Admin (Middleware)</h3>
+        <p><code>AdminMiddleware</code> mengecek apakah <code>is_admin == true</code>. Jika bukan admin, user akan di-redirect ke halaman utama.</p>
+        <pre><code>public function handle(Request $request, Closure $next)
+{
+    if (!auth()->check() || !auth()->user()->is_admin) {
+        return redirect()->route('home')
+            ->with('error', 'Akses ditolak.');
+    }
+    return $next($request);
+}</code></pre>
+    </section>
+
+    <!-- ==================== BAB 7 ==================== -->
+    <section id="bab7" class="page-break">
+        <h2 class="section-title">7. Fitur Website Utama (Public)</h2>
+        <p class="section-desc">Halaman-halaman yang bisa diakses oleh semua pengunjung.</p>
+
+        <h3>7.1 Halaman Beranda</h3>
+        <table>
+            <tr><th>Aspek</th><th>Detail</th></tr>
+            <tr><td>URL</td><td><code>/</code></td></tr>
+            <tr><td>Controller</td><td><code>HomeController@index</code></td></tr>
+            <tr><td>View</td><td><code>views/home.blade.php</code></td></tr>
+        </table>
+        <p>Beranda menampilkan: <strong>Hero section</strong> (banner utama), <strong>Daftar kategori</strong> dengan jumlah produk, <strong>Produk terbaru</strong> (8 produk), dan <strong>CTA section</strong> (ajakan belanja).</p>
+
+        <h3>7.2 Halaman Daftar Produk</h3>
+        <table>
+            <tr><th>Aspek</th><th>Detail</th></tr>
+            <tr><td>URL</td><td><code>/products</code></td></tr>
+            <tr><td>Controller</td><td><code>ProductController@index</code></td></tr>
+            <tr><td>View</td><td><code>views/products/index.blade.php</code></td></tr>
+        </table>
+        <p>Fitur: <strong>Pencarian</strong> produk berdasarkan nama, <strong>Filter kategori</strong> via dropdown, dan <strong>Pagination</strong> (12 produk per halaman).</p>
+        <pre><code>// ProductController@index
+public function index(Request $request)
+{
+    $query = Product::where('is_active', true)->with('category');
+
+    if ($request->search) {
+        $query->where('name', 'like', '%'.$request->search.'%');
+    }
+    if ($request->category) {
+        $query->whereHas('category', function($q) use ($request) {
+            $q->where('slug', $request->category);
+        });
+    }
+
+    $products = $query->latest()->paginate(12);
+    $categories = Category::all();
+
+    return view('products.index', compact('products', 'categories'));
+}</code></pre>
+
+        <h3>7.3 Halaman Detail Produk</h3>
+        <table>
+            <tr><th>Aspek</th><th>Detail</th></tr>
+            <tr><td>URL</td><td><code>/products/{slug}</code></td></tr>
+            <tr><td>Controller</td><td><code>ProductController@show</code></td></tr>
+            <tr><td>View</td><td><code>views/products/show.blade.php</code></td></tr>
+        </table>
+        <p>Menampilkan: gambar produk, deskripsi, harga, status stok, pemilih jumlah (quantity), tombol tambah ke keranjang, dan produk serupa dari kategori yang sama.</p>
+    </section>
+
+    <!-- ==================== BAB 8 ==================== -->
+    <section id="bab8" class="page-break">
+        <h2 class="section-title">8. Fitur Keranjang Belanja</h2>
+        <p class="section-desc">Sistem keranjang belanja berbasis session.</p>
+
+        <h3>Cara Kerja</h3>
+        <p>Keranjang belanja disimpan di <strong>session</strong> (bukan database), sehingga tidak memerlukan login. Data keranjang berupa array yang tersimpan di <code>session('cart')</code>.</p>
+
+        <div class="flow-diagram">
+            <span class="flow-item">Klik "Tambah"</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Simpan ke Session</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Tampil di Keranjang</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Checkout</span>
+        </div>
+
+        <h3>Struktur Data Session Cart</h3>
+        <pre><code>session('cart') = [
+    product_id => [
+        'name'     => 'Nastar Keju',
+        'price'    => 45000,
+        'quantity' => 2,
+        'image'    => 'products/nastar.jpg',
+    ],
+    // ... produk lainnya
+];</code></pre>
+
+        <h3>Fungsi-Fungsi Cart</h3>
+        <table>
+            <tr><th>Method</th><th>URL</th><th>Aksi</th></tr>
+            <tr><td>add()</td><td><code>POST /cart/add/{product}</code></td><td>Menambah produk ke keranjang</td></tr>
+            <tr><td>update()</td><td><code>PATCH /cart/update/{product}</code></td><td>Mengubah jumlah produk</td></tr>
+            <tr><td>remove()</td><td><code>DELETE /cart/remove/{product}</code></td><td>Menghapus produk dari keranjang</td></tr>
+            <tr><td>index()</td><td><code>GET /cart</code></td><td>Menampilkan isi keranjang</td></tr>
+        </table>
+
+        <h3>Kode: Menambah ke Keranjang</h3>
+        <pre><code>public function add(Request $request, Product $product)
+{
+    $cart = session()->get('cart', []);
+    $qty = $request->input('quantity', 1);
+
+    if (isset($cart[$product->id])) {
+        $cart[$product->id]['quantity'] += $qty;  // Tambah jumlah
+    } else {
+        $cart[$product->id] = [                   // Tambah baru
+            'name'     => $product->name,
+            'price'    => $product->price,
+            'quantity' => $qty,
+            'image'    => $product->image,
+        ];
+    }
+
+    session()->put('cart', $cart);
+    return back()->with('success', 'Produk ditambahkan!');
+}</code></pre>
+    </section>
+
+    <!-- ==================== BAB 9 ==================== -->
+    <section id="bab9" class="page-break">
+        <h2 class="section-title">9. Fitur Checkout & Pengurangan Stok</h2>
+        <p class="section-desc">Proses pemesanan dan mekanisme pengurangan stok otomatis.</p>
+
+        <h3>Alur Checkout</h3>
+        <div class="flow-diagram">
+            <span class="flow-item">Keranjang</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Cek Stok</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Isi Form</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Simpan Order</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Kurangi Stok</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">✅ Sukses</span>
+        </div>
+
+        <h3>Mekanisme Pengurangan Stok</h3>
+        <p>Saat checkout, sistem akan:</p>
+        <ol>
+            <li><strong>Validasi stok</strong> — memastikan stok cukup untuk semua item di keranjang</li>
+            <li><strong>Database Transaction</strong> — menggunakan <code>DB::beginTransaction()</code> agar semua operasi berhasil atau semua gagal</li>
+            <li><strong>Lock for Update</strong> — mengunci baris produk agar tidak terjadi race condition (2 user checkout bersamaan)</li>
+            <li><strong>Decrement stok</strong> — mengurangi stok produk sesuai jumlah yang dipesan</li>
+        </ol>
+
+        <h3>Kode Checkout (Bagian Inti)</h3>
+        <pre><code>public function store(Request $request)
+{
+    $cart = session()->get('cart', []);
+
+    try {
+        DB::beginTransaction();            // Mulai transaksi
+
+        // Verifikasi stok & kunci baris
+        foreach ($cart as $productId => $item) {
+            $product = Product::lockForUpdate()->find($productId);
+            if ($product->stock < $item['quantity']) {
+                DB::rollBack();
+                return back()->with('error', 'Stok tidak cukup!');
+            }
+        }
+
+        // Buat pesanan
+        $order = Order::create([...]);
+
+        // Simpan item & kurangi stok
+        foreach ($cart as $productId => $item) {
+            OrderItem::create([...]);
+            Product::where('id', $productId)
+                ->decrement('stock', $item['quantity']); // STOK BERKURANG
+        }
+
+        DB::commit();                      // Simpan semua perubahan
+    } catch (\Exception $e) {
+        DB::rollBack();                    // Batalkan jika error
+        return back()->with('error', 'Terjadi kesalahan.');
+    }
+
+    session()->forget('cart');              // Kosongkan keranjang
+    return redirect()->route('checkout.success', $order);
+}</code></pre>
+
+        <div class="alert alert-success">
+            <span class="alert-icon">✅</span>
+            <div><strong>Contoh:</strong> Jika produk "Nastar Keju" memiliki stok 30, dan user memesan 2, maka stok otomatis menjadi 28 setelah checkout berhasil.</div>
+        </div>
+    </section>
+
+    <!-- ==================== BAB 10 ==================== -->
+    <section id="bab10" class="page-break">
+        <h2 class="section-title">10. Fitur Riwayat Pesanan (User)</h2>
+        <p class="section-desc">User yang login bisa melihat history pesanan mereka.</p>
+
+        <h3>Cara Kerja</h3>
+        <p>Setelah login, link <strong>"Pesanan Saya"</strong> akan muncul di navbar. User bisa melihat daftar semua pesanan mereka beserta status dan detail item.</p>
+
+        <h3>File Terkait</h3>
+        <table>
+            <tr><th>File</th><th>Fungsi</th></tr>
+            <tr><td><code>OrderHistoryController.php</code></td><td>Menampilkan daftar pesanan milik user</td></tr>
+            <tr><td><code>views/orders/index.blade.php</code></td><td>Halaman daftar pesanan</td></tr>
+            <tr><td><code>views/orders/show.blade.php</code></td><td>Halaman detail pesanan</td></tr>
+        </table>
+
+        <h3>Keamanan</h3>
+        <p>User hanya bisa melihat pesanan <strong>milik mereka sendiri</strong>. Controller memastikan <code>order.user_id</code> sama dengan <code>auth()->id()</code>:</p>
+        <pre><code>public function show(Order $order)
+{
+    if ($order->user_id !== auth()->id()) {
+        abort(403, 'Akses ditolak.');  // Cegah akses ke pesanan orang lain
+    }
+    $order->load('items.product');
+    return view('orders.show', compact('order'));
+}</code></pre>
+
+        <h3>Informasi yang Ditampilkan</h3>
+        <table>
+            <tr><th>Halaman</th><th>Informasi</th></tr>
+            <tr><td>Daftar Pesanan</td><td>ID pesanan, tanggal, status (Menunggu/Diproses/Selesai/Dibatalkan), preview item, total harga</td></tr>
+            <tr><td>Detail Pesanan</td><td>Semua item yang dipesan, gambar produk, harga satuan, jumlah, subtotal, timeline status, info pengiriman</td></tr>
+        </table>
+
+        <h3>Status Pesanan</h3>
+        <table>
+            <tr><th>Status</th><th>Warna</th><th>Keterangan</th></tr>
+            <tr><td>Pending (Menunggu)</td><td style="color: #92400E;">🟡 Kuning</td><td>Pesanan baru diterima, belum diproses</td></tr>
+            <tr><td>Processing (Diproses)</td><td style="color: #1E40AF;">🔵 Biru</td><td>Pesanan sedang diproses / disiapkan</td></tr>
+            <tr><td>Completed (Selesai)</td><td style="color: #166534;">🟢 Hijau</td><td>Pesanan sudah selesai</td></tr>
+            <tr><td>Cancelled (Dibatalkan)</td><td style="color: #991B1B;">🔴 Merah</td><td>Pesanan dibatalkan</td></tr>
+        </table>
+    </section>
+
+    <!-- ==================== BAB 11 ==================== -->
+    <section id="bab11" class="page-break">
+        <h2 class="section-title">11. Dashboard Admin</h2>
+        <p class="section-desc">Panel admin untuk mengelola toko.</p>
+
+        <h3>Cara Akses</h3>
+        <ol>
+            <li>Login dengan akun admin di <code>/login</code></li>
+            <li>Klik tombol <strong>"Dashboard"</strong> di navbar, atau buka <code>/admin</code></li>
+        </ol>
+
+        <h3>Halaman Dashboard</h3>
+        <table>
+            <tr><th>Aspek</th><th>Detail</th></tr>
+            <tr><td>URL</td><td><code>/admin</code></td></tr>
+            <tr><td>Controller</td><td><code>Admin\DashboardController@index</code></td></tr>
+            <tr><td>View</td><td><code>views/admin/dashboard.blade.php</code></td></tr>
+        </table>
+        <p>Dashboard menampilkan 4 kartu statistik:</p>
+        <table>
+            <tr><th>Statistik</th><th>Keterangan</th></tr>
+            <tr><td>Total Produk</td><td>Jumlah semua produk di database</td></tr>
+            <tr><td>Kategori</td><td>Jumlah kategori produk</td></tr>
+            <tr><td>Total Pesanan</td><td>Jumlah semua pesanan masuk</td></tr>
+            <tr><td>Pendapatan</td><td>Total harga dari pesanan berstatus "completed"</td></tr>
+        </table>
+        <p>Selain itu, dashboard juga menampilkan <strong>Aksi Cepat</strong> (link ke form tambah produk/kategori) dan <strong>Tabel Pesanan Terbaru</strong> (5 pesanan terakhir).</p>
+
+        <h3>Sidebar Navigasi Admin</h3>
+        <table>
+            <tr><th>Menu</th><th>URL</th><th>Fungsi</th></tr>
+            <tr><td>Dashboard</td><td><code>/admin</code></td><td>Halaman statistik utama</td></tr>
+            <tr><td>Kategori</td><td><code>/admin/categories</code></td><td>CRUD kategori produk</td></tr>
+            <tr><td>Produk</td><td><code>/admin/products</code></td><td>CRUD produk kue</td></tr>
+            <tr><td>Pesanan</td><td><code>/admin/orders</code></td><td>Daftar & kelola pesanan</td></tr>
+            <tr><td>Lihat Website</td><td><code>/</code></td><td>Buka website publik</td></tr>
+            <tr><td>Logout</td><td><code>POST /logout</code></td><td>Keluar dari akun</td></tr>
+        </table>
+    </section>
+
+    <!-- ==================== BAB 12 ==================== -->
+    <section id="bab12" class="page-break">
+        <h2 class="section-title">12. CRUD Kategori (Admin)</h2>
+        <p class="section-desc">Menambah, melihat, mengedit, dan menghapus kategori.</p>
+
+        <h3>Apa itu CRUD?</h3>
+        <table>
+            <tr><th>Huruf</th><th>Arti</th><th>HTTP Method</th><th>Contoh</th></tr>
+            <tr><td><strong>C</strong></td><td>Create (Buat)</td><td>POST</td><td>Tambah kategori baru</td></tr>
+            <tr><td><strong>R</strong></td><td>Read (Baca)</td><td>GET</td><td>Lihat daftar kategori</td></tr>
+            <tr><td><strong>U</strong></td><td>Update (Ubah)</td><td>PUT</td><td>Edit nama kategori</td></tr>
+            <tr><td><strong>D</strong></td><td>Delete (Hapus)</td><td>DELETE</td><td>Hapus kategori</td></tr>
+        </table>
+
+        <h3>Rute Kategori</h3>
+        <table>
+            <tr><th>Aksi</th><th>Method</th><th>URL</th><th>Controller</th></tr>
+            <tr><td>Daftar</td><td>GET</td><td><code>/admin/categories</code></td><td>index()</td></tr>
+            <tr><td>Form Tambah</td><td>GET</td><td><code>/admin/categories/create</code></td><td>create()</td></tr>
+            <tr><td>Simpan Baru</td><td>POST</td><td><code>/admin/categories</code></td><td>store()</td></tr>
+            <tr><td>Form Edit</td><td>GET</td><td><code>/admin/categories/{id}/edit</code></td><td>edit()</td></tr>
+            <tr><td>Update</td><td>PUT</td><td><code>/admin/categories/{id}</code></td><td>update()</td></tr>
+            <tr><td>Hapus</td><td>DELETE</td><td><code>/admin/categories/{id}</code></td><td>destroy()</td></tr>
+        </table>
+
+        <h3>Fitur Upload Gambar</h3>
+        <p>Kategori bisa memiliki gambar. Gambar disimpan di <code>storage/app/public/categories/</code> dan diakses via <code>/storage/categories/nama-file.jpg</code>.</p>
+
+        <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Slug otomatis:</strong> Saat admin mengetik nama kategori "Kue Basah", slug <code>kue-basah</code> dibuat secara otomatis menggunakan <code>Str::slug()</code>.</div>
+        </div>
+    </section>
+
+    <!-- ==================== BAB 13 ==================== -->
+    <section id="bab13" class="page-break">
+        <h2 class="section-title">13. CRUD Produk (Admin)</h2>
+        <p class="section-desc">Mengelola data produk kue.</p>
+
+        <h3>Rute Produk</h3>
+        <table>
+            <tr><th>Aksi</th><th>Method</th><th>URL</th><th>Controller</th></tr>
+            <tr><td>Daftar</td><td>GET</td><td><code>/admin/products</code></td><td>index()</td></tr>
+            <tr><td>Form Tambah</td><td>GET</td><td><code>/admin/products/create</code></td><td>create()</td></tr>
+            <tr><td>Simpan Baru</td><td>POST</td><td><code>/admin/products</code></td><td>store()</td></tr>
+            <tr><td>Form Edit</td><td>GET</td><td><code>/admin/products/{id}/edit</code></td><td>edit()</td></tr>
+            <tr><td>Update</td><td>PUT</td><td><code>/admin/products/{id}</code></td><td>update()</td></tr>
+            <tr><td>Hapus</td><td>DELETE</td><td><code>/admin/products/{id}</code></td><td>destroy()</td></tr>
+        </table>
+
+        <h3>Field Produk</h3>
+        <table>
+            <tr><th>Field</th><th>Wajib</th><th>Keterangan</th></tr>
+            <tr><td>Nama Produk</td><td>✅</td><td>Nama kue (contoh: "Brownies Coklat")</td></tr>
+            <tr><td>Kategori</td><td>✅</td><td>Pilih dari dropdown kategori</td></tr>
+            <tr><td>Harga (Rp)</td><td>✅</td><td>Harga dalam angka tanpa titik</td></tr>
+            <tr><td>Stok</td><td>✅</td><td>Jumlah stok awal</td></tr>
+            <tr><td>Deskripsi</td><td>❌</td><td>Deskripsi produk (opsional)</td></tr>
+            <tr><td>Gambar</td><td>❌</td><td>Upload file gambar (jpg/png)</td></tr>
+            <tr><td>Status Aktif</td><td>✅</td><td>Checklist aktif/nonaktif</td></tr>
+        </table>
+
+        <h3>Kode: Menyimpan Produk Baru</h3>
+        <pre><code>public function store(Request $request)
+{
+    $request->validate([
+        'name'        => 'required|string|max:255',
+        'category_id' => 'required|exists:categories,id',
+        'price'       => 'required|numeric|min:0',
+        'stock'       => 'required|integer|min:0',
+        'image'       => 'nullable|image|max:2048',
+    ]);
+
+    $data = $request->except('image');
+    $data['slug'] = Str::slug($request->name);
+    $data['is_active'] = $request->boolean('is_active');
+
+    if ($request->hasFile('image')) {
+        $data['image'] = $request->file('image')
+            ->store('products', 'public'); // Simpan gambar
+    }
+
+    Product::create($data);
+    return redirect()->route('admin.products.index')
+        ->with('success', 'Produk berhasil ditambahkan!');
+}</code></pre>
+    </section>
+
+    <!-- ==================== BAB 14 ==================== -->
+    <section id="bab14" class="page-break">
+        <h2 class="section-title">14. Manajemen Pesanan (Admin)</h2>
+        <p class="section-desc">Melihat dan mengubah status pesanan pelanggan.</p>
+
+        <h3>Rute Pesanan</h3>
+        <table>
+            <tr><th>Aksi</th><th>Method</th><th>URL</th></tr>
+            <tr><td>Daftar semua pesanan</td><td>GET</td><td><code>/admin/orders</code></td></tr>
+            <tr><td>Detail pesanan</td><td>GET</td><td><code>/admin/orders/{id}</code></td></tr>
+            <tr><td>Update status</td><td>PATCH</td><td><code>/admin/orders/{id}/status</code></td></tr>
+        </table>
+
+        <h3>Cara Update Status</h3>
+        <ol>
+            <li>Buka daftar pesanan di <code>/admin/orders</code></li>
+            <li>Klik ikon 👁️ (mata) untuk melihat detail pesanan</li>
+            <li>Di panel kanan, pilih status baru dari dropdown</li>
+            <li>Klik "Update Status"</li>
+        </ol>
+
+        <h3>Alur Status Pesanan</h3>
+        <div class="flow-diagram">
+            <span class="flow-item">🟡 Pending</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">🔵 Processing</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">🟢 Completed</span>
+            <br><br>
+            <span class="flow-item">🟡 Pending</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">🔴 Cancelled</span>
+        </div>
+
+        <h3>Kode: Update Status</h3>
+        <pre><code>public function updateStatus(Request $request, Order $order)
+{
+    $request->validate([
+        'status' => 'required|in:pending,processing,completed,cancelled',
+    ]);
+
+    $order->update(['status' => $request->status]);
+
+    return back()->with('success', 'Status pesanan berhasil diperbarui!');
+}</code></pre>
+    </section>
+
+    <!-- ==================== BAB 15 ==================== -->
+    <section id="bab15" class="page-break">
+        <h2 class="section-title">15. Routes (Rute URL)</h2>
+        <p class="section-desc">Semua URL yang tersedia dalam aplikasi, didefinisikan di <code>routes/web.php</code>.</p>
+
+        <h3>Rute Publik (Tanpa Login)</h3>
+        <table>
+            <tr><th>Method</th><th>URL</th><th>Fungsi</th></tr>
+            <tr><td>GET</td><td><code>/</code></td><td>Halaman beranda</td></tr>
+            <tr><td>GET</td><td><code>/products</code></td><td>Daftar produk</td></tr>
+            <tr><td>GET</td><td><code>/products/{slug}</code></td><td>Detail produk</td></tr>
+            <tr><td>GET</td><td><code>/cart</code></td><td>Keranjang belanja</td></tr>
+            <tr><td>POST</td><td><code>/cart/add/{product}</code></td><td>Tambah ke keranjang</td></tr>
+            <tr><td>PATCH</td><td><code>/cart/update/{product}</code></td><td>Update jumlah</td></tr>
+            <tr><td>DELETE</td><td><code>/cart/remove/{product}</code></td><td>Hapus dari keranjang</td></tr>
+            <tr><td>GET</td><td><code>/checkout</code></td><td>Form checkout</td></tr>
+            <tr><td>POST</td><td><code>/checkout</code></td><td>Proses checkout</td></tr>
+        </table>
+
+        <h3>Rute Auth (Guest Only)</h3>
+        <table>
+            <tr><th>Method</th><th>URL</th><th>Fungsi</th></tr>
+            <tr><td>GET</td><td><code>/login</code></td><td>Form login</td></tr>
+            <tr><td>POST</td><td><code>/login</code></td><td>Proses login</td></tr>
+            <tr><td>GET</td><td><code>/register</code></td><td>Form register</td></tr>
+            <tr><td>POST</td><td><code>/register</code></td><td>Proses register</td></tr>
+            <tr><td>POST</td><td><code>/logout</code></td><td>Logout (perlu login)</td></tr>
+        </table>
+
+        <h3>Rute User (Perlu Login)</h3>
+        <table>
+            <tr><th>Method</th><th>URL</th><th>Fungsi</th></tr>
+            <tr><td>GET</td><td><code>/orders</code></td><td>Riwayat pesanan user</td></tr>
+            <tr><td>GET</td><td><code>/orders/{order}</code></td><td>Detail pesanan user</td></tr>
+        </table>
+
+        <h3>Rute Admin (Perlu Login + Admin)</h3>
+        <table>
+            <tr><th>Method</th><th>URL</th><th>Fungsi</th></tr>
+            <tr><td>GET</td><td><code>/admin</code></td><td>Dashboard admin</td></tr>
+            <tr><td>GET</td><td><code>/admin/categories</code></td><td>Daftar kategori</td></tr>
+            <tr><td>POST</td><td><code>/admin/categories</code></td><td>Simpan kategori baru</td></tr>
+            <tr><td>PUT</td><td><code>/admin/categories/{id}</code></td><td>Update kategori</td></tr>
+            <tr><td>DELETE</td><td><code>/admin/categories/{id}</code></td><td>Hapus kategori</td></tr>
+            <tr><td>GET</td><td><code>/admin/products</code></td><td>Daftar produk</td></tr>
+            <tr><td>POST</td><td><code>/admin/products</code></td><td>Simpan produk baru</td></tr>
+            <tr><td>PUT</td><td><code>/admin/products/{id}</code></td><td>Update produk</td></tr>
+            <tr><td>DELETE</td><td><code>/admin/products/{id}</code></td><td>Hapus produk</td></tr>
+            <tr><td>GET</td><td><code>/admin/orders</code></td><td>Daftar pesanan</td></tr>
+            <tr><td>GET</td><td><code>/admin/orders/{id}</code></td><td>Detail pesanan</td></tr>
+            <tr><td>PATCH</td><td><code>/admin/orders/{id}/status</code></td><td>Update status pesanan</td></tr>
+        </table>
+    </section>
+
+    <!-- ==================== BAB 16 ==================== -->
+    <section id="bab16" class="page-break">
+        <h2 class="section-title">16. Akun Default & Seeder</h2>
+        <p class="section-desc">Data awal yang sudah tersedia setelah <code>php artisan migrate --seed</code>.</p>
+
+        <h3>Akun Admin Default</h3>
+        <table>
+            <tr><th>Field</th><th>Nilai</th></tr>
+            <tr><td>Nama</td><td>Admin Sofia</td></tr>
+            <tr><td>Email</td><td><code>adminsofia@gmail.com</code></td></tr>
+            <tr><td>Password</td><td><code>admin</code></td></tr>
+            <tr><td>Role</td><td>Admin (is_admin = true)</td></tr>
+        </table>
+
+        <div class="alert alert-warning">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Keamanan:</strong> Pada produksi nyata, segera ubah password admin default ini ke password yang lebih aman.</div>
+        </div>
+
+        <h3>Kategori Default (5 kategori)</h3>
+        <table>
+            <tr><th>No</th><th>Nama Kategori</th><th>Slug</th></tr>
+            <tr><td>1</td><td>Kue Basah</td><td>kue-basah</td></tr>
+            <tr><td>2</td><td>Kue Kering</td><td>kue-kering</td></tr>
+            <tr><td>3</td><td>Roti</td><td>roti</td></tr>
+            <tr><td>4</td><td>Kue Ulang Tahun</td><td>kue-ulang-tahun</td></tr>
+            <tr><td>5</td><td>Pastry</td><td>pastry</td></tr>
+        </table>
+
+        <h3>Produk Default (17 produk)</h3>
+        <table>
+            <tr><th>Nama</th><th>Kategori</th><th>Harga</th><th>Stok</th></tr>
+            <tr><td>Bolu Kukus Pandan</td><td>Kue Basah</td><td>Rp 15.000</td><td>50</td></tr>
+            <tr><td>Kue Lapis Legit</td><td>Kue Basah</td><td>Rp 85.000</td><td>20</td></tr>
+            <tr><td>Dadar Gulung</td><td>Kue Basah</td><td>Rp 12.000</td><td>40</td></tr>
+            <tr><td>Klepon</td><td>Kue Basah</td><td>Rp 10.000</td><td>60</td></tr>
+            <tr><td>Nastar Keju</td><td>Kue Kering</td><td>Rp 45.000</td><td>30</td></tr>
+            <tr><td>Kastengel</td><td>Kue Kering</td><td>Rp 50.000</td><td>25</td></tr>
+            <tr><td>Putri Salju</td><td>Kue Kering</td><td>Rp 40.000</td><td>35</td></tr>
+            <tr><td>Lidah Kucing</td><td>Kue Kering</td><td>Rp 38.000</td><td>40</td></tr>
+            <tr><td>Roti Coklat Lava</td><td>Roti</td><td>Rp 18.000</td><td>45</td></tr>
+            <tr><td>Roti Sobek Keju</td><td>Roti</td><td>Rp 25.000</td><td>30</td></tr>
+            <tr><td>Roti Gandum</td><td>Roti</td><td>Rp 22.000</td><td>35</td></tr>
+            <tr><td>Black Forest Cake</td><td>Kue Ulang Tahun</td><td>Rp 185.000</td><td>10</td></tr>
+            <tr><td>Red Velvet Cake</td><td>Kue Ulang Tahun</td><td>Rp 195.000</td><td>8</td></tr>
+            <tr><td>Tiramisu Cake</td><td>Kue Ulang Tahun</td><td>Rp 210.000</td><td>6</td></tr>
+            <tr><td>Croissant Butter</td><td>Pastry</td><td>Rp 20.000</td><td>30</td></tr>
+            <tr><td>Danish Pastry</td><td>Pastry</td><td>Rp 22.000</td><td>25</td></tr>
+            <tr><td>Eclair Coklat</td><td>Pastry</td><td>Rp 18.000</td><td>35</td></tr>
+        </table>
+
+        <h3>Reset Database</h3>
+        <p>Jika ingin mereset semua data dan mulai dari awal:</p>
+        <pre><code>php artisan migrate:fresh --seed</code></pre>
+
+        <div class="alert alert-warning">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Hati-hati:</strong> Perintah <code>migrate:fresh</code> akan <strong>menghapus semua data</strong> di database dan membuat ulang dari awal. Gunakan hanya saat development.</div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div style="text-align: center; padding: 40px 0; color: var(--muted); font-size: 13px; border-top: 2px solid var(--border); margin-top: 40px;">
+        <p><strong>Dokumentasi Sofia Snack E-Commerce</strong></p>
+        <p>Dibuat untuk Uji Kompetensi Keahlian (UKK) SMK — April 2026</p>
+        <p style="margin-top: 12px; font-size: 12px;">Laravel 13 &bull; Tailwind CSS v4 &bull; MySQL</p>
+    </div>
+
+</body>
+</html>

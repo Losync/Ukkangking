@@ -12,11 +12,8 @@
 <body class="bg-cream font-sans antialiased min-h-screen flex items-center justify-center p-4">
     <div class="w-full max-w-md">
         <div class="text-center mb-8">
-            <a href="{{ route('home') }}" class="inline-flex items-center gap-2">
-                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">S</span>
-                </div>
-                <span class="text-2xl font-bold text-primary">Sofia Snack</span>
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('img/logosofia.svg') }}" alt="Sofia Snack" class="h-16 mx-auto">
             </a>
         </div>
 
